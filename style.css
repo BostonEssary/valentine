@@ -1,0 +1,503 @@
+body {
+    background: linear-gradient(135deg, #ffb6c1 0%, #ffc0cb 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 2rem;
+}
+
+.title {
+    font-family: 'Roboto Slab', serif;
+    text-align: center;
+    color: #ff6b6b;
+    font-size: clamp(3rem, 8vw, 8rem);  /* Responsive font size */
+    opacity: 0;
+    animation: titleAnimation 1.5s ease forwards;
+    margin-top: 2rem;
+    max-width: 90vw;  /* Prevent horizontal overflow */
+    line-height: 1.2;  /* Better line height for readability */
+}
+
+.subtitle {
+    font-family: 'Caveat', cursive;
+    text-align: center;
+    color: #ff6b6b;
+    font-size: clamp(2rem, 5vw, 5rem);  /* Responsive font size */
+    opacity: 0;
+    animation: subtitleAnimation 1.5s ease forwards;
+    margin-top: 2rem;
+    animation-delay: 1.5s;
+}
+
+.text-container {
+    text-align: center;
+    white-space: nowrap;  /* Keeps elements on same line */
+}
+
+.subsubtitle {
+    font-family: 'Caveat', cursive;
+    color: #ff6b6b;
+    font-size: 2rem;
+    opacity: 0;
+    animation: subsubtitleAnimation 1.5s ease forwards;
+    animation-delay: 3s;
+    display: inline-block;  /* Allow elements to sit side by side */
+    margin: 0 0.5rem;  /* Add some spacing */
+}
+
+.heart {
+    display: inline-block;
+    font-size: 2.5rem;
+    opacity: 0;  /* Start invisible */
+    position: relative;
+    animation: cherryDrop 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards,
+              float 2s ease-in-out infinite;
+    animation-delay: 4.5s, 5.5s;
+}
+
+@keyframes titleAnimation {
+    0% {
+        opacity: 0;
+        transform: translateY(50vh);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes subtitleAnimation {
+    0% {
+        opacity: 0;
+        transform: translateX(50vw);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes subsubtitleAnimation {
+    0% {
+        opacity: 0;
+        transform: translateX(-50vw);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes cherryDrop {
+    0% {
+        opacity: 0;  /* Start invisible */
+        transform: translateY(-1000px) rotate(0deg);
+    }
+    0.1% {
+        opacity: 1;
+    }
+    70% {
+        transform: translateY(50px) rotate(360deg);
+    }
+    85% {
+        transform: translateY(-30px) rotate(360deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotate(360deg);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.button {
+    display: inline-block;
+    padding: 1rem 3rem;
+    font-family: 'Caveat', cursive;
+    font-size: 2rem;
+    color: white;
+    background: #ff6b6b;
+    border-radius: 50px;
+    text-decoration: none;
+    margin-top: 3rem;
+    opacity: 0;
+    animation: buttonPop 0.5s ease forwards;
+    animation-delay: 5.5s;
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.6);
+}
+
+@keyframes buttonPop {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    70% {
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Add some sparkle effects */
+.title, .subtitle, .subsubtitle {
+    text-shadow: 2px 2px 4px rgba(255, 107, 107, 0.3);
+}
+
+/* Add floating hearts in the background */
+.hearts-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.hearts-bg::before,
+.hearts-bg::after {
+    content: '💝';
+    position: absolute;
+    animation: hearts1 15s linear infinite;
+    font-size: 20px;
+    left: 20%;
+}
+
+.hearts-bg::after {
+    content: '💖';
+    animation: hearts2 20s linear infinite;
+    font-size: 15px;
+    left: 60%;
+}
+
+/* Add more hearts using pseudo elements on child spans */
+.hearts-bg span {
+    position: absolute;
+    font-size: 25px;
+}
+
+.hearts-bg span:nth-child(1) {
+    content: '💗';
+    left: 10%;
+    animation: hearts1 18s linear infinite;
+    animation-delay: -5s;
+}
+
+.hearts-bg span:nth-child(2) {
+    content: '💓';
+    left: 40%;
+    animation: hearts2 25s linear infinite;
+    animation-delay: -8s;
+}
+
+.hearts-bg span:nth-child(3) {
+    content: '💝';
+    left: 80%;
+    animation: hearts1 20s linear infinite;
+    animation-delay: -12s;
+}
+
+@keyframes hearts1 {
+    0% {
+        transform: translateY(-20px) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes hearts2 {
+    0% {
+        transform: translateY(-20px) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.3;
+    }
+    100% {
+        transform: translateY(100vh) rotate(-360deg);
+        opacity: 0;
+    }
+}
+
+.poem-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.poem-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.love-header {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem;
+    color: #ff6b6b;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(255, 107, 107, 0.3);
+    animation: fadeInDown 1.5s ease-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.poem-content {
+    max-width: 600px;
+    font-family: 'Georgia', serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+    text-align: center;
+    padding: 40px;
+    background: transparent;
+    border: double 6px #ff6b6b;
+}
+
+/* Create animated squiggly border */
+.poem-content::before,
+.poem-content::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    clip-path: url(#wave);
+    background: #ff6b6b;
+    height: 3px;
+}
+
+.poem-content::before {
+    top: 0;
+    animation: waveTop 2s infinite linear;
+}
+
+.poem-content::after {
+    bottom: 0;
+    animation: waveBottom 2s infinite linear;
+}
+
+/* Add left and right borders */
+.poem-content {
+    border-left: 3px solid #ff6b6b;
+    border-right: 3px solid #ff6b6b;
+}
+
+@keyframes waveTop {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes waveBottom {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Reset default body margin */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.cupid-hearts {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.cupid-hearts span {
+    position: absolute;
+    font-size: 24px;
+    opacity: 0;
+    animation: cupidFloat 10s linear infinite;
+}
+
+.cupid-hearts span:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.cupid-hearts span:nth-child(2) {
+    left: 30%;
+    animation-delay: 2s;
+}
+
+.cupid-hearts span:nth-child(3) {
+    left: 50%;
+    animation-delay: 4s;
+}
+
+.cupid-hearts span:nth-child(4) {
+    left: 70%;
+    animation-delay: 6s;
+}
+
+.cupid-hearts span:nth-child(5) {
+    left: 90%;
+    animation-delay: 8s;
+}
+
+@keyframes cupidFloat {
+    0% {
+        transform: translate(0, 100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.6;
+    }
+    25% {
+        transform: translate(-50px, 75vh) rotate(-45deg);
+    }
+    50% {
+        transform: translate(50px, 50vh) rotate(45deg);
+    }
+    75% {
+        transform: translate(-50px, 25vh) rotate(-45deg);
+    }
+    90% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0;
+    }
+}
+
+.memory-image {
+    margin: 20px auto;
+    max-width: 80%;
+    transition: opacity 0.5s;
+    height: 400px;  /* Increased from 300px */
+    width: 700px;  /* Increased from 500px */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.memory-image img {
+    max-height: 400px;  /* Increased from 300px */
+    max-width: 700px;  /* Increased from 500px */
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    object-fit: contain;
+}
+
+/* Updated text styling with smaller width */
+.message {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #ff6b6b;
+    text-align: center;
+    margin: 20px 0;
+    padding: 0 20px;
+    line-height: 1.5;
+    max-width: 600px;  /* Limit text width for better readability */
+    width: 100%;       /* Make it responsive */
+}
+
+/* Updated button styling */
+.btn {
+    display: inline-block;
+    padding: 1rem 3rem;
+    font-family: 'Caveat', cursive;
+    font-size: 2rem;
+    color: white;
+    background: #ff6b6b;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 2rem;
+    margin-right: 10px;  /* Add right margin for spacing between buttons */
+    margin-left: 10px;   /* Add left margin for spacing between buttons */
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.6);
+}
+
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+}
+
+/* Keep the container centered with smaller max-width */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;  /* Limit overall container width */
+    margin: 0 auto;    /* Center the container */
+}
+
+/* Style the header */
+.container h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem;
+    color: #ff6b6b;
+    text-align: center;
+    margin: 2rem 0;
+    text-shadow: 2px 2px 4px rgba(255, 107, 107, 0.3);
+}
+
+.photo-number {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1rem;
+    color: #ff6b6b;
+    text-align: center;
+    margin-bottom: 10px;
+}
+

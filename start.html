@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click to Begin</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .play-button {
+            padding: 20px 40px;
+            font-size: 24px;
+            cursor: pointer;
+            background-color: #ff69b4;
+            border: none;
+            border-radius: 50px;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+        .play-button:hover {
+            transform: scale(1.1);
+        }
+    </style>
+    <!-- Include any styles from why-i-love-you.html -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="content">
+        <button class="play-button" id="startButton">Click to Begin ♥</button>
+    </div>
+    <audio id="backgroundMusic" src="assets/billie.mp3"></audio>
+
+    <script src="start-script.js"></script>
+</body>
+</html>
